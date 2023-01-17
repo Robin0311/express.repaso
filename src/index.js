@@ -1,9 +1,12 @@
 require("dotenv").config();
+const bodyParser = require('body-parser')
 console.log("Hola " + process.env.PORT);
-const { application } = require("express");
 const express = require("express");
 const app = express();
 const { dbConnection } = require("./config/db");
+
+// middlewares
+app.use(bodyParser.json())
 
 app.listen(process.env.PORT, () => {
   console.log(
@@ -17,6 +20,7 @@ app.listen(process.env.PORT, () => {
   );
 });
 
+// Conectado a la BD
 dbConnection();
 
 // localhost:5000
